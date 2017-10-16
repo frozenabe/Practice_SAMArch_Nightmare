@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyLambdaFunction:
+    Properties:
+      CodeUri: s3://foxtailbucket/2b85bb0b89300a41d455f949ae0a55b8
+      Environment:
+        Variables:
+          TABLE_NAME:
+            Ref: Table
+      Handler: index.handler
+      MemorySize: 1024
+      Policies: AmazonDynamoDBFullAccess
+      Runtime: nodejs6.10
+      Timeout: 120
+    Type: AWS::Serverless::Function
+  Table:
+    Type: AWS::Serverless::SimpleTable
+Transform: AWS::Serverless-2016-10-31
